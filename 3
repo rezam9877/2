@@ -1,0 +1,10 @@
+apt install git curl build-essential libssl-dev zlib1g-dev
+yum install openssl-devel zlib-devel
+yum groupinstall "Development Tools"
+git clone https://github.com/TelegramMessenger/MTProxy
+cd MTProxy
+make && cd objs/bin
+curl -s https://core.telegram.org/getProxySecret -o proxy-secret
+curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf
+head -c 16 /dev/urandom | xxd -ps
+./mtproto-proxy -u changiz -p 8888 -H 443 -S <rezam9877-patch-1> --aes-pwd proxy-secret proxy-multi.conf -M 5
